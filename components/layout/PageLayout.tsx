@@ -7,7 +7,7 @@ export default function PageLayout({ children }: PageLayoutProps) {
     <>
         <div className="">
           <main className="py-10">
-            <div className="mx-auto max-w-6xl px-4 lg:px-20">
+            <div className="mx-auto px-4 lg:px-10">
                 {children}
             </div>
           </main>
