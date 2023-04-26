@@ -1,13 +1,20 @@
 import { useState } from "react";
 import { TabList, Tab } from "@tremor/react";
+import { TabViews } from "@/utils/utils";
+
 
 
 export default function Navbar() {
-    const [value, setValue] = useState(null);
+    const [selectedTabView, setSelectedTabView] = useState(TabViews.Overview);
     return (
-        <TabList defaultValue="1" className="mt-4 bg-slate-50">
-          <Tab value="1" text="Overview" />
-          <Tab value="2" text="Detail" />
+        <TabList
+            className="mt-6"
+            defaultValue={ TabViews.Overview }
+            onValueChange={ (value) => setSelectedTabView(value) }
+        >   
+            <Tab value={ TabViews.Overview } text={ TabViews.Overview } />
+            <Tab value={ TabViews.Detail } text={ TabViews.Detail } />
+            {/* <Tab value={ TabViews.Live } text={ TabViews.Live } /> */}
         </TabList>
   );
 };
