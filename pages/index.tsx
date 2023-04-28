@@ -16,7 +16,7 @@ export function Home() {
   return (
     <main>
 
-      <div className="px-10 pt-10 bg-slate-50">
+      <div className="px-10 pt-10 bg-slate-50 border-b-[1px]">
 
         <Title> Mockingbird Merch Shop, Inc. </Title>
 
@@ -38,7 +38,7 @@ export function Home() {
         {/* <Navbar /> */}
 
         <TabList
-            className="mt-6"
+            className="mt-6 -mb-[1px]"
             defaultValue={ TabViews.Overview }
             onValueChange={ (value) => setSelectedTabView(value) }
         >   
