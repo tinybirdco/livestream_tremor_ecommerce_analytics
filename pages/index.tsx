@@ -18,23 +18,31 @@ export function Home() {
 
       <div className="px-10 pt-10 bg-slate-50">
 
-        <Title> Mockingbird Merch Shop, Inc. </Title>
+        <div className="flex justify-between">
+          <div>
+            <Title> Mockingbird Merch Shop, Inc. </Title>
 
-        <div className="mt-2 flex items-center space-x-5">
-          <div className="flex items-center space-x-1">
-            <UsersIcon className="w-4 h-4 text-gray-400" />
-            <span className="text-sm text-gray-500"> 102 customers </span>
+            <div className="mt-2 flex items-center space-x-5">
+              <div className="flex items-center space-x-1">
+                <UsersIcon className="w-4 h-4 text-gray-400" />
+                <span className="text-sm text-gray-500"> 102 customers </span>
+              </div>
+              <div className="flex items-center space-x-1">
+                <OfficeBuildingIcon className="w-4 h-4 text-gray-400" />
+                <span className="text-sm text-gray-500"> 13 locations </span>
+              </div>
+              <div className="flex items-center space-x-1">
+                <TagIcon className="w-4 h-4 text-gray-400" />
+                <span className="text-sm text-gray-500"> 120 transactions </span>
+              </div>
+            </div>
           </div>
-          <div className="flex items-center space-x-1">
-            <OfficeBuildingIcon className="w-4 h-4 text-gray-400" />
-            <span className="text-sm text-gray-500"> 13 locations </span>
-          </div>
-          <div className="flex items-center space-x-1">
-            <TagIcon className="w-4 h-4 text-gray-400" />
-            <span className="text-sm text-gray-500"> 120 transactions </span>
-          </div>
+          <DateRangePicker 
+              className="w-60"
+              enableDropdown={false}
+              defaultValue={ [new Date(2023, 3, 26)] }
+            /> 
         </div>
-
         {/* <Navbar /> */}
 
         <TabList
@@ -53,25 +61,7 @@ export function Home() {
         { selectedTabView === TabViews.Overview ? (
 
         <div className="mt-8">
-          <p className="text-sm text-gray-700 font-medium">Performance Overview</p>
-          <div className="mt-6 flex items-center space-x-3">
-            <DateRangePicker 
-              className="w-60"
-              enableDropdown={false}
-              defaultValue={ [new Date(2023, 3, 26)] }
-            />
-            <span className="text-sm text-gray-500"> compared to </span>
-            <Dropdown
-              className="w-60"
-              onValueChange={(value) => console.log("The selected value is", value)}
-              defaultValue="1"
-            >
-              <DropdownItem value="1" text="Same period last year" />
-              <DropdownItem value="2" text="Benchmark" />
-              <DropdownItem value="3" text="No comparison" />
-            </Dropdown>
-          </div>
-
+          <p className="text-sm text-gray-700 font-semibold">Performance Overview</p>
           <div className="mt-8">
             <Grid numColsSm={2} numColsLg={3} className="gap-8">
                 <Card>
