@@ -26,8 +26,8 @@ import {
   UsersIcon,
 } from "@heroicons/react/solid";
 import Header from "@/components/Header";
-import Overview from "@/components/Overview";
-import Live from "@/components/Live";
+import Overview from "@/components/TabOverview";
+import Live from "@/components/TabLive";
 import PageLayout from "@/components/layout/PageLayout";
 
 const dataFormatter = (number: number) =>
