@@ -21,7 +21,7 @@ export const Kpis = {
 };
 
 export const TabViews = {
-    Overview: 'Overview',
-    Detail: 'Detail',
     Live: 'Live',
+    Overview: 'Overview',
+    // Detail: 'Detail',
 };

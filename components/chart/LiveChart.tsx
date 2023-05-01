@@ -42,7 +42,7 @@ const chartdata = [
   const dataFormatter = (number: number) =>
   `$ ${Intl.NumberFormat("us").format(number).toString()}`;
 
-export default function MockOverviewChart() { 
+export default function LiveChart() { 
     return (
         <LineChart
             className="mt-10 h-72"
