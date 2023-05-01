@@ -3,25 +3,18 @@ export const usNumberformatter = (number: number, decimals = 0) => Intl.NumberFo
     maximumFractionDigits: decimals,
 }).format(Number(number)).toString();
 
-export const formatters: {[key: string]: any} = {
-    Sales: (number: number) => `$ ${usNumberformatter(number)}`,
-    Units: (number: number) => `${usNumberformatter(number)}`,
-    Customers: (number: number) => `${usNumberformatter(number)}`,
-    Delta: (number: number) => `${usNumberformatter(number, 2)}%`,
-};
-
 export const classNames: { (...classes: string[]): string } = (
     ...classes: string[]
 ): string => classes.filter(Boolean).join(' ');
 
 export const Kpis = {
-    Sales: 'Gross volume',
+    Sales: 'Sales',
     Units: 'Units sold',
     Customers: 'Customers',
 };
 
-export const TabViews = {
-    Live: 'Live',
-     Overview: 'Overview',
-    // Detail: 'Detail',
+export const formatters: {[key: string]: any} = {
+    [Kpis.Sales]: (number: number) => `$ ${usNumberformatter(number)}`,
+    [Kpis.Units]: (number: number) => `${usNumberformatter(number)}`,
+    [Kpis.Customers]: (number: number) => `${usNumberformatter(number)}`,
 };
