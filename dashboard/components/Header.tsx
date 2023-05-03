@@ -1,4 +1,4 @@
-import { Title } from "@tremor/react";
+import { Title } from '@tremor/react';
 
 export default function Header() {
   return (
