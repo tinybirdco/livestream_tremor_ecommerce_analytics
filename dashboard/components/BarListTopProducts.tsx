@@ -4,7 +4,6 @@ import { useFetchPipe } from "trm-tb-plugin";
 export default function BarListTopProducts({ locations }: { locations: string[]}) {
     const { data } = useFetchPipe("top_products_by_units_sold_api", { locations: locations.length > 0 ? locations : undefined })
 
-    console.log("DATA: ", data)
     return (
         <>
         <Flex className="mt-3">
