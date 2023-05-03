@@ -10,11 +10,9 @@ export const classNames: { (...classes: string[]): string } = (
 export const Kpis = {
     Sales: 'Sales',
     Units: 'Units sold',
-    Customers: 'Customers',
 };
 
 export const formatters: {[key: string]: any} = {
     [Kpis.Sales]: (number: number) => `$ ${usNumberformatter(number)}`,
     [Kpis.Units]: (number: number) => `${usNumberformatter(number)}`,
-    [Kpis.Customers]: (number: number) => `${usNumberformatter(number)}`,
 };

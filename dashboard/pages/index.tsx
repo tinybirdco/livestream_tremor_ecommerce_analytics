@@ -17,9 +17,10 @@ import PulseIcon from "@/components/PulseIcon";
 import { Kpis, formatters } from "@/utils/utils";
 import ChartUnitsSold from "@/components/ChartUnitsSold";
 import ChartSales from "@/components/ChartSales";
-import ChartCustomers from "@/components/ChartCustomers";
 
 import { locations as locationData } from "@/data/mockdata";
+import BarListTopProducts from "@/components/BarListTopProducts";
+import BarListTopChannels from "@/components/BarListTopChannels";
 
 function renderChart(kpi: string, locations: string[]) {
   switch(kpi) {
@@ -27,8 +28,6 @@ function renderChart(kpi: string, locations: string[]) {
       return <ChartSales locations={locations} />
     case Kpis.Units:
       return <ChartUnitsSold locations={locations} />
-    case Kpis.Customers:
-      return <ChartCustomers locations={locations} />
   }
 }
 
@@ -55,7 +54,6 @@ export function Home() {
         <TabList className="mb-5" value={kpi} onValueChange={setKpi}>
           <Tab value={Kpis.Sales} text={Kpis.Sales} />
           <Tab value={Kpis.Units} text={Kpis.Units} />
-          <Tab value={Kpis.Customers} text={Kpis.Customers} />
         </TabList>
         { renderChart(kpi, locations) }
       </Card>
@@ -66,22 +64,14 @@ export function Home() {
             <Title>Top Products</Title>
             <Text>by units sold</Text>
           </Flex>
-          <BarList
-            className="mt-5"
-            data={[{ value: 10, name: "Product 1" }, { value: 5, name: "Product 2" }]}
-            valueFormatter={formatters[Kpis.Units]}
-          />
+          <BarListTopProducts locations={locations} />
         </Card>
         <Card>
           <Flex className="space-x-2" justifyContent="start" alignItems="baseline">
             <Title>Top Channels</Title>
             <Text>by sales</Text>
           </Flex>
-          <BarList
-            className="mt-5"
-            data={[{ value: 2000, name: "Instagram" }, { value: 1500, name: "SEO" }]}
-            valueFormatter={formatters[Kpis.Sales]}
-          />
+          <BarListTopChannels locations={locations} />
         </Card>
       </Grid>
     </div>
