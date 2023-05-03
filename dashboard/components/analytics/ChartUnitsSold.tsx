@@ -1,4 +1,3 @@
-import { chartdata } from "../data/mockdata";
 import { Kpis, formatters } from "@/utils/utils";
 import { AreaChart, Metric } from "@tremor/react";
 import { useFetchPipe } from "trm-tb-plugin";
@@ -6,7 +5,6 @@ import { useFetchPipe } from "trm-tb-plugin";
 const formatToUSD = (value: number) => `$ ${Intl.NumberFormat("us").format(value).toString()}`;
 
 export default function ChartUnitsSold({ locations }: { locations: string[] }) {
-    const data = chartdata;
     const { data: dataTotalUnitsSold } = useFetchPipe("total_units_sold_api", {
         locations: locations.length > 0 ? locations : undefined,
     });

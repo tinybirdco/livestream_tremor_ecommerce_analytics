@@ -10,17 +10,16 @@ import {
   MultiSelectBoxItem,
   Flex,
   Divider,
-  BarList,
 } from "@tremor/react";
 import Header from "@/components/Header";
 import PulseIcon from "@/components/PulseIcon";
-import { Kpis, formatters } from "@/utils/utils";
-import ChartUnitsSold from "@/components/ChartUnitsSold";
-import ChartSales from "@/components/ChartSales";
+import { Kpis } from "@/utils/utils";
+import ChartUnitsSold from "@/components/analytics/ChartUnitsSold";
+import ChartSales from "@/components/analytics/ChartSales";
 
-import { locations as locationData } from "@/data/mockdata";
-import BarListTopProducts from "@/components/BarListTopProducts";
-import BarListTopChannels from "@/components/BarListTopChannels";
+import BarListTopProducts from "@/components/analytics/BarListTopProducts";
+import BarListTopChannels from "@/components/analytics/BarListTopChannels";
+import { useFetchPipe } from "trm-tb-plugin";
 
 function renderChart(kpi: string, locations: string[]) {
   switch(kpi) {
@@ -35,6 +34,9 @@ export function Home() {
   const [kpi, setKpi] = useState(Kpis.Sales);
   const [locations, setLocations] = useState<string[]>([]);
 
+  const { data: locationsData } = useFetchPipe("locations_api");
+  const locationsList = locationsData?.map((item: any) => item.location) ?? [];
+
   return (
     <main className="mx-auto">
         <Header />
@@ -45,7 +47,7 @@ export function Home() {
           <Text className="font-medium">Last 24 hours</Text>
         </Flex>
         <MultiSelectBox placeholder="Select location" className="max-w-xs" value={locations} onValueChange={setLocations}>
-          { locationData.map((item) => (
+          { locationsList.map((item) => (
             <MultiSelectBoxItem key={item} value={item} />
           )) }
         </MultiSelectBox>
