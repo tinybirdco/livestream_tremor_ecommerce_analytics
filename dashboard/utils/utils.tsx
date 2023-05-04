@@ -6,10 +6,6 @@ export const usNumberformatter = (number: number, decimals = 0) =>
     .format(Number(number))
     .toString();
 
-export const classNames: { (...classes: string[]): string } = (
-  ...classes: string[]
-): string => classes.filter(Boolean).join(' ');
-
 export const Kpis = {
   Sales: 'Sales',
   Units: 'Units sold',
