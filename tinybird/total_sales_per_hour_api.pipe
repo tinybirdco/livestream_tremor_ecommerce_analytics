@@ -1,0 +1,38 @@
+TOKEN "read livestream api token" READ
+
+TOKEN "total_sales_api_endpoint_read_7863" READ
+
+NODE endpoint
+SQL >
+
+    %
+    SELECT hour, sum(sales) as sales
+    FROM sales_by_location_per_hour
+    WHERE
+        1
+        {% if defined(locations) %}
+            AND location IN {{ Array(locations, 'String', default='') }}
+        {% end %}
+        {% if defined(date_from) and defined(date_to) %}
+            AND hour
+            BETWEEN {{
+                Date(
+                    date_from,
+                    "2023-05-02",
+                    description="Starting date range",
+                    required=True,
+                )
+            }}
+            and {{
+                Date(
+                    date_to,
+                    "2023-05-03",
+                    description="Starting date range",
+                    required=True,
+                )
+            }}
+        {% end %}
+    GROUP BY hour
+    ORDER BY hour
+
+

@@ -1,0 +1,39 @@
+TOKEN "read livestream api token" READ
+
+TOKEN "top_products_by_units_sold_api_endpoint_read_9052" READ
+
+NODE endpoint
+SQL >
+
+    %
+    SELECT day, product_id, sum(units_sold) AS units_sold
+    FROM units_sold_by_product_id_per_day
+    WHERE
+        1
+        {% if defined(locations) %}
+            AND location IN {{ Array(locations, 'String', default='') }}
+        {% end %}
+        {% if defined(date_from) and defined(date_to) %}
+            AND hour
+            BETWEEN {{
+                Date(
+                    date_from,
+                    "2023-05-02",
+                    description="Starting date range",
+                    required=True,
+                )
+            }}
+            and {{
+                Date(
+                    date_to,
+                    "2023-05-03",
+                    description="Starting date range",
+                    required=True,
+                )
+            }}
+        {% end %}
+    GROUP BY day, product_id
+    ORDER BY units_sold DESC
+    LIMIT {{ Int8(limit, 10, description="This is a description", required=True) }}
+
+
