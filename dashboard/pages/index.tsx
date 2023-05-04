@@ -40,7 +40,7 @@ export function Home() {
   return (
     <main className="mx-auto">
       <Header />
-      <div className="mt-8 px-10">
+      <div className="py-8 px-10">
         <Flex justifyContent="start" className="space-x-2">
           <Flex justifyContent="start" className="space-x-2">
             <PulseIcon />
