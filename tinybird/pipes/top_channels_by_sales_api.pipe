@@ -1,0 +1,37 @@
+TOKEN "dashboard" READ
+
+NODE endpoint
+SQL >
+
+    %
+        SELECT day, utm_source, sum(sales) as sales
+        FROM sales_by_channel_per_day
+        WHERE
+            1
+            {% if defined(locations) %}
+                AND location IN {{ Array(locations, 'String', default='') }}
+            {% end %}
+            {% if defined(date_from) and defined(date_to) %}
+                AND day
+                BETWEEN {{
+                    Date(
+                        date_from,
+                        "2023-05-02",
+                        description="Starting date range",
+                        required=True,
+                    )
+                }}
+                and {{
+                    Date(
+                        date_to,
+                        "2023-05-03",
+                        description="Starting date range",
+                        required=True,
+                    )
+                }}
+            {% end %}
+        GROUP BY day, utm_source
+        ORDER BY day DESC, sales DESC
+        LIMIT {{ Int8(limit, 10, description="This is a description", required=True) }}
+
+
