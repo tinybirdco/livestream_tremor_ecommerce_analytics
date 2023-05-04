@@ -1,3 +1,13 @@
+export interface PipeParams {
+  locations: string[];
+  date_from: string;
+  date_to: string;
+}
+
+export interface FilterProps {
+  locations: string[];
+}
+
 export const usNumberformatter = (number: number, decimals = 0) =>
   Intl.NumberFormat('us', {
     minimumFractionDigits: decimals,

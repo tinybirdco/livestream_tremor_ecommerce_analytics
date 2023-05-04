@@ -20,6 +20,7 @@ import ChartSales from '@/components/analytics/ChartSales';
 import BarListTopProducts from '@/components/analytics/BarListTopProducts';
 import BarListTopChannels from '@/components/analytics/BarListTopChannels';
 import { useFetchPipe } from 'trm-tb-plugin';
+import { format, startOfDay, startOfToday } from 'date-fns';
 
 function renderChart(kpi: string, locations: string[]) {
   switch (kpi) {
@@ -29,6 +30,10 @@ function renderChart(kpi: string, locations: string[]) {
       return <ChartUnitsSold locations={locations} />;
   }
 }
+
+const TODAY = format(startOfDay(new Date(2023, 4, 4)), 'yyyy-MM-dd');
+const TOMORROW = format(startOfDay(new Date(2023, 4, 5)), 'yyyy-MM-dd');
+export const dateRange = { date_from: TODAY, date_to: TOMORROW };
 
 export function Home() {
   const [kpi, setKpi] = useState(Kpis.Sales);

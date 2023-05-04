@@ -1,14 +1,12 @@
-import { Kpis, formatters } from '@/utils/utils';
+import { dateRange } from '@/pages';
+import { FilterProps, Kpis, PipeParams, formatters } from '@/utils/utils';
 import { BarList, Flex, Text } from '@tremor/react';
 import { useFetchPipe } from 'trm-tb-plugin';
 
-export default function BarListTopChannels({
-  locations,
-}: {
-  locations: string[];
-}) {
-  const { data } = useFetchPipe('top_channels_by_sales_api', {
+export default function BarListTopChannels({ locations }: FilterProps) {
+  const { data } = useFetchPipe<{}, PipeParams>('top_channels_by_sales_api', {
     locations: locations.length > 0 ? locations : undefined,
+    ...dateRange,
   });
 
   return (

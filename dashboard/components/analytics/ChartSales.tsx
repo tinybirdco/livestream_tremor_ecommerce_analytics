@@ -1,4 +1,5 @@
-import { Kpis, formatters } from '@/utils/utils';
+import { dateRange } from '@/pages';
+import { FilterProps, Kpis, formatters } from '@/utils/utils';
 import { AreaChart, Metric } from '@tremor/react';
 import { useFetchPipe } from 'trm-tb-plugin';
 
@@ -6,17 +7,19 @@ interface TotalSalesParams {
   sales: number;
 }
 
-export default function ChartSales({ locations }: { locations: string[] }) {
+export default function ChartSales({ locations }: FilterProps) {
   const { data: dataTotalSales } = useFetchPipe<TotalSalesParams>(
     'total_sales_api',
     {
       locations: locations.length > 0 ? locations : undefined,
+      ...dateRange,
     }
   );
   const { data: dataTotalSalesPerHour } = useFetchPipe(
     'total_sales_per_hour_api',
     {
       locations: locations.length > 0 ? locations : undefined,
+      ...dateRange,
     }
   );
 

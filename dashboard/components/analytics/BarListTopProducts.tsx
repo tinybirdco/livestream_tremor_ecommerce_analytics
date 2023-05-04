@@ -1,13 +1,12 @@
+import { dateRange } from '@/pages';
+import { FilterProps } from '@/utils/utils';
 import { BarList, Flex, Text } from '@tremor/react';
 import { useFetchPipe } from 'trm-tb-plugin';
 
-export default function BarListTopProducts({
-  locations,
-}: {
-  locations: string[];
-}) {
+export default function BarListTopProducts({ locations }: FilterProps) {
   const { data } = useFetchPipe('top_products_by_units_sold_api', {
     locations: locations.length > 0 ? locations : undefined,
+    ...dateRange,
   });
 
   return (
