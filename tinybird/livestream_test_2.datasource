@@ -1,0 +1,15 @@
+
+SCHEMA >
+    `browser` String `json:$.browser`,
+    `location` String `json:$.location`,
+    `product_id` Int32 `json:$.product_id`,
+    `promo` Int16 `json:$.promo`,
+    `sales` Int16 `json:$.sales`,
+    `store_id` Int16 `json:$.store_id`,
+    `timestamp` DateTime64(3) `json:$.timestamp`,
+    `total_price` Int16 `json:$.total_price`,
+    `utm_source` String `json:$.utm_source`
+
+ENGINE "MergeTree"
+ENGINE_PARTITION_KEY "toYear(timestamp)"
+ENGINE_SORTING_KEY "timestamp, store_id, total_price, utm_source"

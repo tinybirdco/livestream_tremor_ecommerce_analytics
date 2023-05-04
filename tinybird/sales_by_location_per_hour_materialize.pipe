@@ -1,0 +1,19 @@
+NODE mv
+SQL >
+
+    SELECT
+        toStartOfHour(timestamp) AS hour,
+        location,
+        SUMSimpleState(total_price) AS sales
+    FROM livestream_test_2
+    GROUP BY
+        hour,
+        location
+    ORDER BY hour ASC
+
+TYPE materialized
+DATASOURCE sales_by_location_per_hour
+ENGINE "AggregatingMergeTree"
+ENGINE_PARTITION_KEY "toYYYYMM(hour)"
+ENGINE_SORTING_KEY "hour, location"
+

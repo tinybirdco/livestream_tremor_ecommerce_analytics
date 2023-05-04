@@ -1,15 +1,17 @@
-import { chartdata } from '../data/mockdata';
 import { Kpis, formatters } from '@/utils/utils';
 import { AreaChart, Metric } from '@tremor/react';
 import { useFetchPipe } from 'trm-tb-plugin';
 
-export default function ChartSales({ locations }: { locations: string[] }) {
-  const { data: dataTotalSales } = useFetchPipe('total_sales_api', {
-    locations: locations.length > 0 ? locations : undefined,
-  });
+interface TotalSalesParams {
+  sales: number;
+}
 
-  const sales = formatters[Kpis.Sales](
-    dataTotalSales ? dataTotalSales[0]['sales'] : 0
+export default function ChartSales({ locations }: { locations: string[] }) {
+  const { data: dataTotalSales } = useFetchPipe<TotalSalesParams>(
+    'total_sales_api',
+    {
+      locations: locations.length > 0 ? locations : undefined,
+    }
   );
   const { data: dataTotalSalesPerHour } = useFetchPipe(
     'total_sales_per_hour_api',
@@ -17,6 +19,8 @@ export default function ChartSales({ locations }: { locations: string[] }) {
       locations: locations.length > 0 ? locations : undefined,
     }
   );
+
+  const sales = formatters[Kpis.Sales](dataTotalSales?.[0]['sales'] ?? 0);
 
   return (
     <>

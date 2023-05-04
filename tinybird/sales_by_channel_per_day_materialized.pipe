@@ -1,0 +1,21 @@
+NODE mv
+SQL >
+
+    SELECT
+        toStartOfDay(timestamp) AS day,
+        location,
+        utm_source,
+        sumSimpleState(total_price) AS sales
+    FROM livestream_test_2
+    GROUP BY
+        day,
+        location,
+        utm_source
+    ORDER BY sales DESC
+
+TYPE materialized
+DATASOURCE sales_by_channel_per_day
+ENGINE "AggregatingMergeTree"
+ENGINE_PARTITION_KEY "toYYYYMM(day)"
+ENGINE_SORTING_KEY "day, location, utm_source"
+

@@ -1,0 +1,21 @@
+NODE mv
+SQL >
+
+    SELECT
+        toStartOfDay(timestamp) AS day,
+        product_id,
+        location,
+        sumSimpleState(sales) AS units_sold
+    FROM livestream_test_2
+    GROUP BY
+        day,
+        location,
+        product_id
+    ORDER BY units_sold DESC
+
+TYPE materialized
+DATASOURCE units_sold_by_product_id_per_day
+ENGINE "AggregatingMergeTree"
+ENGINE_PARTITION_KEY "toYYYYMM(day)"
+ENGINE_SORTING_KEY "day, location, product_id"
+
