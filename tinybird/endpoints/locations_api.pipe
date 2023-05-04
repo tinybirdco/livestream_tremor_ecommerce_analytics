@@ -1,18 +1,13 @@
-TOKEN "read livestream api token" READ
-
-TOKEN "total_sales_api_endpoint_read_7863" READ
+TOKEN "dashboard" READ
 
 NODE endpoint
 SQL >
 
     %
-    SELECT hour, sum(sales) as sales
+    SELECT DISTINCT location, sum(sales) as sales
     FROM sales_by_location_per_hour
     WHERE
         1
-        {% if defined(locations) %}
-            AND location IN {{ Array(locations, 'String', default='') }}
-        {% end %}
         {% if defined(date_from) and defined(date_to) %}
             AND hour
             BETWEEN {{
@@ -32,7 +27,7 @@ SQL >
                 )
             }}
         {% end %}
-    GROUP BY hour
-    ORDER BY hour
+    GROUP BY location
+    ORDER BY sales DESC
 
 

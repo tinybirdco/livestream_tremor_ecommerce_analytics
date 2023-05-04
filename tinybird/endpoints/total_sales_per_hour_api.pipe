@@ -1,13 +1,11 @@
-TOKEN "read livestream api token" READ
-
-TOKEN "top_channels_by_sales_api_endpoint_read_6162" READ
+TOKEN "dashboard" READ
 
 NODE endpoint
 SQL >
 
     %
-    SELECT day, utm_source, sum(sales) as sales
-    FROM sales_by_channel_per_day
+    SELECT hour, sum(sales) as sales
+    FROM sales_by_location_per_hour
     WHERE
         1
         {% if defined(locations) %}
@@ -32,8 +30,7 @@ SQL >
                 )
             }}
         {% end %}
-    GROUP BY day, utm_source
-    ORDER BY sales DESC
-    LIMIT {{ Int8(limit, 10, description="This is a description", required=True) }}
+    GROUP BY hour
+    ORDER BY hour
 
 

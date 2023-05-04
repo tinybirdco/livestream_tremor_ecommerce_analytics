@@ -6,7 +6,7 @@ SQL >
         product_id,
         location,
         sumSimpleState(sales) AS units_sold
-    FROM livestream_test_2
+    FROM sales_events
     GROUP BY
         day,
         location,

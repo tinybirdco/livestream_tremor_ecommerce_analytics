@@ -1,17 +1,18 @@
-TOKEN "read livestream api token" READ
-
-TOKEN "locations_api_endpoint_read_3007" READ
+TOKEN "dashboard" READ
 
 NODE endpoint
 SQL >
 
     %
-    SELECT DISTINCT location, sum(sales) as sales
-    FROM sales_by_location_per_hour
+    SELECT day, utm_source, sum(sales) as sales
+    FROM sales_by_channel_per_day
     WHERE
         1
+        {% if defined(locations) %}
+            AND location IN {{ Array(locations, 'String', default='') }}
+        {% end %}
         {% if defined(date_from) and defined(date_to) %}
-            AND hour
+            AND day
             BETWEEN {{
                 Date(
                     date_from,
@@ -29,7 +30,8 @@ SQL >
                 )
             }}
         {% end %}
-    GROUP BY location
+    GROUP BY day, utm_source
     ORDER BY sales DESC
+    LIMIT {{ Int8(limit, 10, description="This is a description", required=True) }}
 
 

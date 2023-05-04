@@ -1,6 +1,4 @@
-TOKEN "read livestream api token" READ
-
-TOKEN "total_units_sold_api_endpoint_read_2578" READ
+TOKEN "dashboard" READ
 
 NODE endpoint
 SQL >

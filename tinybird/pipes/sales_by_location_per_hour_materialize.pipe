@@ -5,7 +5,7 @@ SQL >
         toStartOfHour(timestamp) AS hour,
         location,
         SUMSimpleState(total_price) AS sales
-    FROM livestream_test_2
+    FROM sales_events
     GROUP BY
         hour,
         location

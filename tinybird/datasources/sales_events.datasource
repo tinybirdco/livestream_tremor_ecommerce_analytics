@@ -1,3 +1,5 @@
+TOKEN "data" APPEND
+TOKEN "data" CREATE
 
 SCHEMA >
     `browser` String `json:$.browser`,

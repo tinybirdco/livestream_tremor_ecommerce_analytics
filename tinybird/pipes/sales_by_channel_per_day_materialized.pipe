@@ -6,7 +6,7 @@ SQL >
         location,
         utm_source,
         sumSimpleState(total_price) AS sales
-    FROM livestream_test_2
+    FROM sales_events
     GROUP BY
         day,
         location,
