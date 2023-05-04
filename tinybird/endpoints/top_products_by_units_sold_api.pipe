@@ -12,7 +12,7 @@ SQL >
             AND location IN {{ Array(locations, 'String', default='') }}
         {% end %}
         {% if defined(date_from) and defined(date_to) %}
-            AND hour
+            AND day
             BETWEEN {{
                 Date(
                     date_from,
