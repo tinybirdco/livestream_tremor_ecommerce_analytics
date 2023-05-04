@@ -1,0 +1,141 @@
+{
+  "timestamp": {
+    "type": "date.between",
+    "params": [
+      "2023-05-01T00:00:00.000Z",
+      "2023-05-04T23:59:59.000Z"
+    ]
+  },
+  "store_id": {
+    "type": "datatype.number",
+    "params": [
+      {
+        "min": 1,
+        "max": 6
+      }
+    ]
+  },
+  "browser": {
+    "type": "mockingbird.pickWeighted",
+    "params": [
+      {
+        "values": [
+          "Chrome",
+          "Brave",
+          "Firefox",
+          "Safari"
+        ],
+        "weights": [
+          65,
+          3,
+          8,
+          20
+        ]
+      }
+    ]
+  },
+  "product_id": {
+    "type": "datatype.number",
+    "params": [
+      {
+        "min": 3278100,
+        "max": 3278150
+      }
+    ]
+  },
+  "total_price": {
+    "type": "datatype.number",
+    "params": [
+      {
+        "min": 49.99,
+        "max": 149.99
+      }
+    ]
+  },
+  "promo": {
+    "type": "mockingbird.pickWeighted",
+    "params": [
+      {
+        "values": [
+          0,
+          1
+        ],
+        "weights": [
+          19,
+          1
+        ]
+      }
+    ]
+  },
+  "sales": {
+    "type": "mockingbird.pickWeighted",
+    "params": [
+      {
+        "values": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "weights": [
+          50,
+          5,
+          2,
+          1
+        ]
+      }
+    ]
+  },
+  "utm_source": {
+    "type": "mockingbird.pickWeighted",
+    "params": [
+      {
+        "values": [
+          "instagram",
+          "newsletter",
+          "tiktok",
+          "search_engine"
+        ],
+        "weights": [
+          65,
+          13,
+          18,
+          20
+        ]
+      }
+    ]
+  },
+  "location": {
+    "type": "mockingbird.pickWeighted",
+    "params": [
+      {
+        "values": [
+          "UK",
+          "Germany",
+          "France",
+          "Spain",
+          "Portugal",
+          "Italy",
+          "Netherlands",
+          "Austria",
+          "Switzerland",
+          "Belgium",
+          "Ireland"
+        ],
+        "weights": [
+          30,
+          25,
+          15,
+          10,
+          7,
+          5,
+          5,
+          3,
+          3,
+          3,
+          1
+        ]
+      }
+    ]
+  }
+}
