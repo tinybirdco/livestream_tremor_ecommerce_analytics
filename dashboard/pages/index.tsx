@@ -30,8 +30,8 @@ function renderChart(kpi: string, locations: string[]) {
   }
 }
 
-const TODAY = format(startOfDay(new Date(2023, 4, 4)), 'yyyy-MM-dd');
-const TOMORROW = format(startOfDay(new Date(2023, 4, 5)), 'yyyy-MM-dd');
+const TODAY = format(startOfDay(new Date(2023, 4, 5)), 'yyyy-MM-dd');
+const TOMORROW = format(startOfDay(new Date(2023, 4, 6)), 'yyyy-MM-dd');
 export const dateRange = { date_from: TODAY, date_to: TOMORROW };
 
 export function Home() {
