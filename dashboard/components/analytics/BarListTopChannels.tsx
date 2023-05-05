@@ -1,5 +1,5 @@
 import { dateRange } from '@/pages';
-import { FilterProps, Kpis, PipeParams, formatters } from '@/utils/utils';
+import { FilterProps, PipeParams, formatters } from '@/utils/utils';
 import { BarList, Flex, Text } from '@tremor/react';
 import { useFetchPipe } from 'trm-tb-plugin';
 
@@ -23,7 +23,7 @@ export default function BarListTopChannels({ locations }: FilterProps) {
             name: item.utm_source,
           })) ?? []
         }
-        valueFormatter={formatters[Kpis.Sales]}
+        valueFormatter={formatters.sales}
       />
     </>
   );

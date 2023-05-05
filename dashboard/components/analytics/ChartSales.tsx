@@ -1,5 +1,5 @@
 import { dateRange } from '@/pages';
-import { FilterProps, Kpis, formatters } from '@/utils/utils';
+import { FilterProps, formatters } from '@/utils/utils';
 import { AreaChart, Metric } from '@tremor/react';
 import { useFetchPipe } from 'trm-tb-plugin';
 
@@ -23,26 +23,22 @@ export default function ChartSales({ locations }: FilterProps) {
     }
   );
 
-  const sales = formatters[Kpis.Sales](dataTotalSales?.[0]['sales'] ?? 0);
+  const sales = formatters.sales(dataTotalSales?.[0]['sales'] ?? 0);
 
   return (
     <>
       <Metric>{sales}</Metric>
-      {dataTotalSalesPerHour && dataTotalSalesPerHour.length > 0 ? (
-        <AreaChart
-          className="mt-10 h-72"
-          data={dataTotalSalesPerHour}
-          index="hour"
-          categories={['sales']}
-          colors={['blue']}
-          valueFormatter={formatters[Kpis.Sales]}
-          showYAxis={false}
-          startEndOnly={true}
-          showLegend={false}
-        />
-      ) : (
-        'loading'
-      )}
+      <AreaChart
+        className="mt-10 h-72"
+        data={dataTotalSalesPerHour ?? [{ hour: 0 }]}
+        index="hour"
+        categories={['sales']}
+        colors={['blue']}
+        valueFormatter={formatters.sales}
+        showYAxis={false}
+        startEndOnly={true}
+        showLegend={false}
+      />
     </>
   );
 }

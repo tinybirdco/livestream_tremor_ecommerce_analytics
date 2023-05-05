@@ -13,7 +13,6 @@ import {
 } from '@tremor/react';
 import Header from '@/components/Header';
 import PulseIcon from '@/components/PulseIcon';
-import { Kpis } from '@/utils/utils';
 import ChartUnitsSold from '@/components/analytics/ChartUnitsSold';
 import ChartSales from '@/components/analytics/ChartSales';
 
@@ -24,9 +23,9 @@ import { format, startOfDay, startOfToday } from 'date-fns';
 
 function renderChart(kpi: string, locations: string[]) {
   switch (kpi) {
-    case Kpis.Sales:
+    case 'sales':
       return <ChartSales locations={locations} />;
-    case Kpis.Units:
+    case 'units':
       return <ChartUnitsSold locations={locations} />;
   }
 }
@@ -36,7 +35,7 @@ const TOMORROW = format(startOfDay(new Date(2023, 4, 5)), 'yyyy-MM-dd');
 export const dateRange = { date_from: TODAY, date_to: TOMORROW };
 
 export function Home() {
-  const [kpi, setKpi] = useState(Kpis.Sales);
+  const [kpi, setKpi] = useState('sales');
   const [locations, setLocations] = useState<string[]>([]);
 
   const { data: locationsData } = useFetchPipe('locations_api');
@@ -64,13 +63,13 @@ export function Home() {
         </Flex>
         <Card className="mt-8">
           <TabList className="mb-5" value={kpi} onValueChange={setKpi}>
-            <Tab value={Kpis.Sales} text={Kpis.Sales} />
-            <Tab value={Kpis.Units} text={Kpis.Units} />
+            <Tab value="sales" text="Sales" />
+            <Tab value="units" text="Units Sold" />
           </TabList>
           {renderChart(kpi, locations)}
         </Card>
         <Divider />
-        <Grid numColsLg={2} className="gap-x-5">
+        <Grid numColsMd={2} className="gap-x-5">
           <Card>
             <Flex
               className="space-x-2"
